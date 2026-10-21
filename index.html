@@ -278,6 +278,7 @@ $('pdfBtn').addEventListener('click',()=>{
   const setDraw=(rgb)=>doc.setDrawColor(...rgb);
   const money=n=>'₹'+Math.round(n).toLocaleString('en-IN');
   function header(title,subtitle,orientation='landscape'){
+    if(typeof doc.setCharSpace==='function') doc.setCharSpace(0);
     const w=orientation==='portrait'?210:297;
     setFill(C.dark);doc.rect(0,0,w,27,'F');
     setFill(C.red);doc.rect(0,25,w,2,'F');
@@ -346,6 +347,7 @@ $('pdfBtn').addEventListener('click',()=>{
     columnStyles:{0:{cellWidth:13},1:{cellWidth:39},2:{cellWidth:29},3:{cellWidth:32},4:{cellWidth:27},5:{cellWidth:25},6:{cellWidth:35},7:{cellWidth:29}},
     didDrawPage:()=>{ }
   });
+  if(typeof doc.setCharSpace==='function') doc.setCharSpace(0);
   let last=doc.lastAutoTable.finalY;
   if(last<190){
     doc.setFont('helvetica','bold');doc.setFontSize(7.5);setText(C.dark);doc.text('Method & assumptions',10,last+7);
@@ -397,11 +399,12 @@ $('pdfBtn').addEventListener('click',()=>{
     alternateRowStyles:{fillColor:[247,250,247]},
     columnStyles:{0:{cellWidth:57,fontStyle:'bold'},1:{cellWidth:29,halign:'center'},2:{cellWidth:37},3:{cellWidth:53}},
     margin:{left:14,right:14,bottom:15}});
+  if(typeof doc.setCharSpace==='function') doc.setCharSpace(0);
   let y=doc.lastAutoTable.finalY+5;
   doc.setFont('helvetica','normal');doc.setFontSize(6.8);setText(C.muted);
   doc.text(doc.splitTextToSize('Rate source: India Post savings-schemes information and Government small-savings rate notification for Q3 FY 2026–27 (1 Oct–31 Dec 2026). Rates are subject to periodic government revision. Confirm the current rate and scheme rules at the time of account opening.',182),14,y);
   // PLI / RPLI bonus reference
-  doc.addPage('a4','portrait');header('PLI & RPLI BONUS QUICK GUIDE','Declared simple reversionary bonus rates  •  per ₹1,000 sum assured per year','portrait');
+  doc.addPage('a4','portrait');header(''PLI & RPLI BONUS GUIDE','Declared bonus per ₹1,000 sum assured','portrait');
   doc.setFont('helvetica','normal');doc.setFontSize(7.4);setText(C.muted);
   doc.text('The rates below are the latest declared rates located for FY 2025–26, effective from 1 April 2025, pending confirmation of any subsequent notification.',14,33);
   const bonus=[
@@ -416,6 +419,7 @@ $('pdfBtn').addEventListener('click',()=>{
     alternateRowStyles:{fillColor:[247,250,247]},
     columnStyles:{0:{cellWidth:57,fontStyle:'bold'},1:{cellWidth:37,halign:'center'},2:{cellWidth:37,halign:'center'},3:{cellWidth:45}},
     margin:{left:14,right:14,bottom:15}});
+  if(typeof doc.setCharSpace==='function') doc.setCharSpace(0);
   y=doc.lastAutoTable.finalY+8;
   setFill(C.mint);doc.roundedRect(14,y,182,35,3,3,'F');
   doc.setFont('helvetica','bold');doc.setFontSize(8.2);setText(C.dark);doc.text('Terminal bonus (where eligible)',19,y+8);
