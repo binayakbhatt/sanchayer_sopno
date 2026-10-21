@@ -132,7 +132,7 @@ const $=id=>document.getElementById(id);
 const fmt=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(Math.round(n));
 let chart=null,reportData=null;
 // Paste the deployed Google Apps Script Web App URL here after setup.
-const GOOGLE_SHEETS_WEB_APP_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzpzv1gMraRfhZ3LY2WaKVRRT3Ao29QGpddFfEOiHCWF2Y0025A5JLjIOo8dPh4WM8HCQ/exec';
 $('plan').addEventListener('change',()=> $('incrementWrap').classList.toggle('hidden',$('plan').value!=='C'));
 function getIdentity(){
  const name=$('name').value.trim(),profession=$('profession').value.trim(),phone=$('phone').value.trim(),pin=$('pincode').value.trim();
