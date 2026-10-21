@@ -27,15 +27,15 @@ main{padding:28px clamp(16px,3vw,28px) 48px}.section-kicker{text-align:center;te
 <header class="site-header">
   <div class="topline">
     <div class="brand">INDIA POST <span style="color:#d9a33d"></span><small>DREAMS THROUGH SAVINGS</small></div>
-    <div class="pill">TEACHERS OF ASSAM · INVEST IN YOUR FUTURE</div>
+    <div class="pill">INVEST IN YOUR FUTURE</div>
   </div>
   <div class="inner hero">
     <div class="hero-copy">
       <p class="eyebrow">A savings movement for Assam</p>
       <h1>Sanchayer <br>Sopno </h1>
-      <p class="lead">Set aside 10% of your income. Take a step towards your dreams.</p>
+      <p class="lead">Set aside % of your income. Take a step towards your dreams.</p>
       <p class="sub"> Now give your family's dreams the same attention through a disciplined savings approach using separate one-year Post Office Time Deposits.</p>
-      <a class="hero-cta" href="#calculator">Build my savings plan <span aria-hidden="true">↗</span></a>
+      <a class="hero-cta" href="#calculator">Build my Systematic Investment Plan (SIP) <span aria-hidden="true">↗</span></a>
       <p class="hero-note">Start small. Stay consistent. Grow with a plan.</p>
     </div>
     <section class="benefits-panel" aria-label="Benefits of the savings strategy">
@@ -267,37 +267,175 @@ function drawCorpusChart(doc,d,x,y,w,h){
  doc.setFontSize(8);doc.setTextColor(23,99,68);doc.text('— Projected corpus',x+8,y+h-1);doc.setTextColor(123,139,131);doc.text('— Total contributions',x+60,y+h-1);doc.setTextColor(0,0,0);
 }
 $('pdfBtn').addEventListener('click',()=>{
- if(!reportData)return; if(!window.jspdf||!window.jspdf.jsPDF){$('downloadStatus').textContent='PDF library could not load. Check internet connection and retry.';return}
- const d=reportData,doc=new window.jspdf.jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
- const planNames={A:'Plan A — Start & Reinvest',B:'Plan B — Consistent Savings',C:'Plan C — Step-Up Savings'};
- doc.setFontSize(18);doc.setTextColor(23,99,68);doc.text('Sanchayer Sopno',14,14);doc.setTextColor(0,0,0);doc.setFontSize(12);doc.text('Personalized Savings Projection Report',14,21);doc.setFontSize(8);
- doc.text(`Prepared for: ${d.identity.name} | Profession: ${d.identity.profession||'Not specified'} | Phone: ${d.identity.phone} | PIN: ${d.identity.pin}`,14,28);
- doc.text(`Plan: ${planNames[d.plan]} | Monthly contribution: ${fmt(d.monthly)} | Assumed rate: ${d.rate}% p.a. | Horizon: ${d.years} years${d.plan==='C'?' | Annual step-up: '+d.increment+'%':''}`,14,34);
- const kpis=[['Total amount invested',fmt(d.invested)],['Projected final corpus',fmt(d.corpus)],['Estimated interest earned',fmt(d.profit)],['Profit on contributions',d.pct.toFixed(2)+'%']];
- let kx=14;kpis.forEach(([label,value])=>{doc.setDrawColor(210,220,214);doc.roundedRect(kx,40,64,17,2,2,'S');doc.setFontSize(7);doc.setTextColor(80,90,84);doc.text(label,kx+3,46);doc.setFontSize(10);doc.setTextColor(23,99,68);doc.text(value,kx+3,52);doc.setTextColor(0,0,0);kx+=67;});
- doc.setFontSize(10);doc.text('Projected corpus growth',14,66);drawCorpusChart(doc,d,14,69,265,74);
- doc.setFontSize(8);doc.setTextColor(0,0,0);doc.text('Illustrative only. Assumed rate is editable; actual TD rate applies as per rules at booking. Future reinvestment rates may change.',14,150,{maxWidth:260});
- doc.addPage('a4','landscape');doc.setFontSize(15);doc.setTextColor(23,99,68);doc.text('Detailed Month-wise Investment & Maturity Schedule',14,14);doc.setTextColor(0,0,0);doc.setFontSize(8);doc.text(`Customer: ${d.identity.name} | Plan: ${planNames[d.plan]} | Horizon: ${d.years} years`,14,21);
- doc.autoTable({startY:27,head:[['Month','Contribution period','Amount invested (₹)','Cumulative invested (₹)','First maturity month','Full reinvestment years','Projected maturity / horizon value (₹)','Interest earned (₹)']],body:d.rows.map(r=>[r.month,r.label,fmt(r.contribution),fmt(r.cumulative),r.maturityMonth<=d.years*12?r.maturityMonth:'Beyond horizon',r.yearsReinvested,fmt(r.value),fmt(r.profit)]),styles:{fontSize:7,cellPadding:2,overflow:'linebreak'},headStyles:{fillColor:[23,99,68]},margin:{left:10,right:10},didDrawPage:()=>{doc.setFontSize(7);doc.setTextColor(90,90,90);doc.text('Sanchayer Sopno | Illustrative projection only',10,202);}});
- const last=doc.lastAutoTable.finalY;if(last<190){doc.setFontSize(7);doc.setTextColor(60,70,65);doc.text('Method: each contribution is modelled as a separate 1-year TD. Reinvestment is simplified to complete-year periods. Contributions not yet matured are shown at principal value.',10,last+5,{maxWidth:275});doc.text('Taxes/TDS, actual product-specific rounding and premature closure calculations are excluded. Future reinvestment rates may change.',10,last+10,{maxWidth:275});}
- doc.addPage('a4','portrait');
- doc.setFontSize(17);doc.setTextColor(23,99,68);doc.text('Frequently Asked Questions',14,17);doc.setFontSize(8);doc.setTextColor(60,70,65);doc.text('Save for your goals. Explore life cover for the people who depend on you.',14,22);
- const pdfFaq=[
-  ['What is Sanchayer Sopno?','It is an illustrative savings-planning tool that models optional monthly contributions into separate one-year Post Office Time Deposits. It is a planning approach, not a separate government savings scheme or recurring deposit account.'],
-  ['Can I stop contributing and resume any time?','Yes. This is a flexible planning approach, not a contractual monthly contribution plan. You can stop making new deposits and resume later according to your circumstances. Each TD already opened remains a separate account and continues under its own terms until maturity or permitted closure. Stopping new contributions does not itself close existing deposits.'],
-  ['Are returns guaranteed? Is this market-linked like a mutual fund SIP?','Post Office TD interest is not linked to stock-market performance. For an actual TD, the government-notified rate applicable when it is opened applies under scheme rules for that deposit tenure. This report is only an illustration: future reinvestment rates may change, and actual values depend on booking dates, scheme rules, rounding and tax treatment. Mutual fund SIP returns are market-linked and not guaranteed.'],
-  ['Why can the interest rate be edited?','The rate is a scenario input, not a live rate feed. Check the currently notified Post Office TD rate and applicable terms before opening a deposit. The same assumed rate is applied throughout this simplified illustration, including reinvestments.'],
-  ['What about premature closure?','Premature closure is generally not permitted before six months. After six months but before one year, interest is payable at the applicable Post Office Savings Account rate for completed months. Longer-tenure TD closures are subject to scheme-specific reduced-interest rules and adjustment of interest already paid. Confirm the current rules and amount payable with the post office before closing.'],
-  ['What happens when a TD matures?','Actual maturity and payment follow the applicable TD scheme rules and account instructions. The calculator models eligible proceeds as reinvested for complete years where applicable; future reinvestment is subject to the process, rate and rules then in force.'],
-  ['What is needed to open a Time Deposit?','Please confirm current documentation and account requirements with your post office. KYC and account-related requirements apply under the prevailing Post Office Savings Bank rules.'],
-  ['How do the three plans work?','Plan A models new contributions during the first 12 months only. Plan B models a fixed monthly contribution throughout the selected horizon. Plan C models monthly contributions that increase annually by the selected percentage. These are planning scenarios, not separate government schemes.'],
-  ['How can PLI or RPLI complement a savings plan?','Your savings help you plan for tomorrow; life cover can help protect the people who depend on you. Postal Life Insurance (PLI) is available to eligible categories, including government and public-sector employees and qualifying professionals or graduates. Rural Postal Life Insurance (RPLI) extends life-insurance options to eligible rural residents. Ask postal staff to explain suitable plans, premiums, sum assured and policy terms. Eligibility and acceptance are subject to applicable rules; a TD is not an insurance policy.'],
-  ['How can I register interest in PLI/RPLI?','If you select “Yes, I am interested” in the family-protection prompt, the website sends a request to the configured Google Sheet. Postal staff can follow up to explain options if the request is successfully recorded. The browser cannot independently verify that the cross-origin submission was saved, so the sheet should be checked.'],
-  ['Is the projected final corpus guaranteed?','No. This is an illustrative projection, not an official maturity quotation. Actual values depend on the applicable notified rate and scheme rules for each TD, opening and maturity dates, rounding, tax treatment and future reinvestment rates.'],
-  ['How is customer information handled?','Name, phone number and PIN code are required for the report; profession is optional. If Google Sheets is connected, customer and calculation information is sent to that spreadsheet. Keep it private and use customer information only for a clear, appropriate purpose.']
-];
- doc.autoTable({startY:27,head:[['Question','Answer']],body:pdfFaq,styles:{fontSize:8,cellPadding:3,overflow:'linebreak',valign:'top'},headStyles:{fillColor:[23,99,68]},columnStyles:{0:{cellWidth:54},1:{cellWidth:128}},margin:{left:14,right:14},didDrawPage:()=>{doc.setFontSize(7);doc.setTextColor(90,90,90);doc.text('Sanchayer Sopno | Illustrative projection only',14,290);}});
- doc.save('sanchayer-sopno-'+d.plan.toLowerCase()+'-report.pdf');$('downloadStatus').textContent='PDF report downloaded with projection graph, month-wise schedule and FAQs.';
+  if(!reportData)return;
+  if(!window.jspdf||!window.jspdf.jsPDF){$('downloadStatus').textContent='PDF library could not load. Check internet connection and retry.';return}
+  const d=reportData,doc=new window.jspdf.jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
+  const planNames={A:'Plan A — Start & Reinvest',B:'Plan B — Consistent Savings',C:'Plan C — Step-Up Savings'};
+  const C={green:[23,99,68],dark:[18,48,43],red:[184,23,42],gold:[238,190,72],mint:[232,246,237],pale:[247,249,246],ink:[35,55,70],muted:[93,110,119],line:[218,228,221],white:[255,255,255],blue:[31,83,119]};
+  const pageW=297,pageH=210,margin=14;
+  const setText=(rgb)=>doc.setTextColor(...rgb);
+  const setFill=(rgb)=>doc.setFillColor(...rgb);
+  const setDraw=(rgb)=>doc.setDrawColor(...rgb);
+  const money=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+  function header(title,subtitle,orientation='landscape'){
+    const w=orientation==='portrait'?210:297;
+    setFill(C.dark);doc.rect(0,0,w,27,'F');
+    setFill(C.red);doc.rect(0,25,w,2,'F');
+    doc.setFont('helvetica','bold');doc.setFontSize(17);setText(C.white);doc.text('SANCHAYER SOPNO',margin,12);
+    doc.setFont('helvetica','normal');doc.setFontSize(8);setText([218,235,224]);doc.text('INDIA POST  |  DREAMS THROUGH SAVINGS',margin,19);
+    doc.setFont('helvetica','bold');doc.setFontSize(13);setText(C.white);doc.text(title,w-margin,12,{align:'right'});
+    doc.setFont('helvetica','normal');doc.setFontSize(7.5);setText([218,235,224]);doc.text(subtitle,w-margin,19,{align:'right'});
+  }
+  function footer(){
+    const n=doc.getNumberOfPages();
+    for(let i=1;i<=n;i++){
+      doc.setPage(i);const w=doc.internal.pageSize.getWidth(),h=doc.internal.pageSize.getHeight();
+      setDraw(C.line);doc.setLineWidth(.25);doc.line(14,h-10,w-14,h-10);
+      doc.setFont('helvetica','normal');doc.setFontSize(7);setText(C.muted);
+      doc.text('Sanchayer Sopno  •  Illustrative planning report  •  Verify current scheme rules before investing',14,h-5);
+      doc.text(`Page ${i} of ${n}`,w-14,h-5,{align:'right'});
+    }
+  }
+  function sectionLabel(text,x,y){
+    setFill(C.mint);doc.roundedRect(x,y-4,2.5,7,1,1,'F');
+    doc.setFont('helvetica','bold');doc.setFontSize(10);setText(C.dark);doc.text(text,x+6,y+1);
+  }
+  // Page 1: executive summary
+  header('YOUR SAVINGS BLUEPRINT',`Prepared ${new Date().toLocaleDateString('en-IN')}  •  ${d.years}-year illustration`);
+  setFill(C.pale);doc.roundedRect(14,34,269,23,3,3,'F');
+  doc.setFont('helvetica','bold');doc.setFontSize(12);setText(C.dark);doc.text(d.identity.name,20,42);
+  doc.setFont('helvetica','normal');doc.setFontSize(8);setText(C.muted);
+  const personal=`${d.identity.profession||'Profession not specified'}  |  Phone: ${d.identity.phone}  |  PIN: ${d.identity.pin}`;
+  doc.text(personal,20,49);
+  doc.setFont('helvetica','bold');doc.setFontSize(9);setText(C.green);doc.text(planNames[d.plan],14,66);
+  doc.setFont('helvetica','normal');doc.setFontSize(8);setText(C.ink);
+  doc.text(`Monthly contribution: ${money(d.monthly)}    Assumed rate: ${d.rate}% p.a.    Horizon: ${d.years} years${d.plan==='C'?'    Annual step-up: '+d.increment+'%':''}`,14,72);
+  const kpis=[['TOTAL CONTRIBUTIONS',money(d.invested)],['PROJECTED CORPUS',money(d.corpus)],['ESTIMATED PROFIT',money(d.profit)],['PROFIT ON CONTRIBUTIONS',d.pct.toFixed(2)+'%']];
+  const kw=64,kg=4.3;let kx=14;
+  kpis.forEach(([label,value],i)=>{
+    setFill(i===1?C.green:C.white);setDraw(i===1?C.green:C.line);doc.roundedRect(kx,80,kw,24,3,3,'FD');
+    doc.setFont('helvetica','bold');doc.setFontSize(6.6);setText(i===1?C.white:C.muted);doc.text(label,kx+4,87);
+    doc.setFont('helvetica','bold');doc.setFontSize(11);setText(i===1?C.white:C.dark);doc.text(value,kx+4,97);
+    kx+=kw+kg;
+  });
+  sectionLabel('Projected corpus growth',14,116);
+  drawCorpusChart(doc,d,14,121,171,62);
+  setFill(C.pale);doc.roundedRect(194,118,89,67,3,3,'F');
+  doc.setFont('helvetica','bold');doc.setFontSize(9);setText(C.dark);doc.text('YOUR PLAN AT A GLANCE',200,127);
+  doc.setFont('helvetica','normal');doc.setFontSize(7.6);setText(C.ink);
+  const planBlurb={
+    A:'Contribute for the first 12 months, then pause new contributions and model eligible reinvestment.',
+    B:'Continue the same monthly contribution throughout the selected horizon.',
+    C:`Increase the monthly contribution by ${d.increment}% at the start of each new year.`
+  }[d.plan];
+  doc.text(doc.splitTextToSize(planBlurb,77),200,135);
+  doc.setFont('helvetica','bold');doc.setFontSize(7.5);setText(C.red);doc.text('PLEASE NOTE',200,160);
+  doc.setFont('helvetica','normal');doc.setFontSize(7);setText(C.muted);
+  doc.text(doc.splitTextToSize('This is an estimate, not a maturity quotation. Future TD rates may change. Actual values depend on deposit dates, rules, rounding and tax treatment.',77),200,166);
+  doc.addPage('a4','landscape');
+  // Page 2 onward: detailed schedule
+  header('MONTH-WISE SCHEDULE','Contribution, maturity and reinvestment illustration');
+  doc.setFont('helvetica','normal');doc.setFontSize(8);setText(C.ink);
+  doc.text(`Customer: ${d.identity.name}  |  Plan: ${planNames[d.plan]}  |  Assumed rate: ${d.rate}% p.a.`,14,34);
+  doc.autoTable({
+    startY:39,head:[['Month','Contribution period','Contribution','Cumulative invested','First maturity month','Reinvestment years','Projected value','Estimated profit']],
+    body:d.rows.map(r=>[r.month,r.label,money(r.contribution),money(r.cumulative),r.maturityMonth<=d.years*12?r.maturityMonth:'Beyond horizon',r.yearsReinvested,money(r.value),money(r.profit)]),
+    theme:'striped',styles:{font:'helvetica',fontSize:7,cellPadding:2.2,overflow:'linebreak',textColor:C.ink,lineColor:C.line,lineWidth:.1},
+    headStyles:{fillColor:C.green,textColor:C.white,fontStyle:'bold',fontSize:7},
+    alternateRowStyles:{fillColor:[247,250,247]},margin:{left:10,right:10,bottom:14},
+    columnStyles:{0:{cellWidth:13},1:{cellWidth:39},2:{cellWidth:29},3:{cellWidth:32},4:{cellWidth:27},5:{cellWidth:25},6:{cellWidth:35},7:{cellWidth:29}},
+    didDrawPage:()=>{ }
+  });
+  let last=doc.lastAutoTable.finalY;
+  if(last<190){
+    doc.setFont('helvetica','bold');doc.setFontSize(7.5);setText(C.dark);doc.text('Method & assumptions',10,last+7);
+    doc.setFont('helvetica','normal');doc.setFontSize(7);setText(C.muted);
+    const notes='Each contribution is modelled as a separate one-year TD. A simplified quarterly-compounding approximation and complete-year reinvestment periods are used. Contributions not yet matured by the selected horizon are shown at principal value. Taxes/TDS, actual product-specific rounding, premature closure and future rate changes are not modelled.';
+    doc.text(doc.splitTextToSize(notes,275),10,last+12);
+  }
+  // FAQ page(s), formatted as a clear Q&A table
+  doc.addPage('a4','portrait');header('FREQUENTLY ASKED QUESTIONS','Understand the illustration and the underlying products','portrait');
+  const pdfFaq=[
+   ['What is Sanchayer Sopno?','An illustrative savings-planning tool that models optional monthly contributions into separate one-year Post Office Time Deposits. It is not a separate government scheme or recurring deposit account.'],
+   ['Can I stop contributing and resume later?','Yes. This is a flexible planning approach, not a contractual monthly contribution plan. Existing TDs remain separate accounts under their own terms; stopping new contributions does not close them.'],
+   ['Are returns guaranteed or market-linked?','Post Office TDs are not linked to stock-market performance. The applicable rate and rules for each actual TD depend on its booking date and tenure. The projected final corpus is not guaranteed; future reinvestment rates may change. Mutual fund SIP returns are market-linked and not guaranteed.'],
+   ['Why can I edit the interest rate?','The rate is a scenario input, not a live rate feed. Confirm the currently notified TD rate before opening each deposit. This simplified model applies one assumed rate across the illustration.'],
+   ['What about premature closure?','Premature closure is generally not permitted before six months. Closure after that is subject to tenure-specific reduced-interest rules. Confirm the current rules and amount payable with the post office before closing.'],
+   ['What happens when a TD matures?','Actual maturity and payment follow the applicable TD rules and account instructions. The model assumes eligible proceeds may be reinvested for complete years; future reinvestment depends on the rules and rate then in force.'],
+   ['What is needed to open a TD?','KYC and account-related requirements apply. Confirm the latest documentation and account requirements with your post office.'],
+   ['How do the three plans work?','Plan A models contributions for the first 12 months only; Plan B models a fixed monthly contribution for the full horizon; Plan C increases monthly contributions annually by the selected percentage. These are scenarios, not separate government schemes.'],
+   ['How can PLI/RPLI complement savings?','A TD is not life insurance. PLI is available to eligible employee/professional categories; RPLI provides options for eligible rural residents. Ask postal staff about eligibility, premiums, sum assured, policy terms and suitability.'],
+   ['How is PLI/RPLI interest registered?','If you select “Yes, I am interested” in the family-protection prompt, the site sends a request to the configured Google Sheet. The sheet should be checked because the browser cannot independently verify that a cross-origin submission was saved.'],
+   ['Is customer information protected?','Name, phone and PIN are included in the report; profession is optional. If Google Sheets is connected, keep it private and use customer information only for an appropriate stated purpose.']
+  ];
+  doc.autoTable({startY:34,head:[['QUESTION','ANSWER']],body:pdfFaq,theme:'striped',
+    styles:{font:'helvetica',fontSize:7.4,cellPadding:2.8,overflow:'linebreak',valign:'top',textColor:C.ink,lineColor:C.line,lineWidth:.1},
+    headStyles:{fillColor:C.green,textColor:C.white,fontStyle:'bold',fontSize:7.5},
+    alternateRowStyles:{fillColor:[247,250,247]},columnStyles:{0:{cellWidth:49,fontStyle:'bold'},1:{cellWidth:127}},
+    margin:{left:14,right:14,bottom:15},didDrawPage:()=>{}});
+  // POSB scheme quick-reference pages, directly after FAQs
+  doc.addPage('a4','portrait');header('POSB SCHEMES AT A GLANCE','Interest rates and tenure  •  1 October–31 December 2026','portrait');
+  doc.setFont('helvetica','normal');doc.setFontSize(7.4);setText(C.muted);
+  doc.text('Rates shown are the currently notified rates for the stated quarter. Product conditions, eligibility, limits and tax treatment vary by scheme.',14,33);
+  const posb=[
+   ['Post Office Savings Account (SB)','4.0% p.a.','No fixed tenure','Interest credited annually'],
+   ['Recurring Deposit (RD)','6.7% p.a.','5 years','Monthly deposits; quarterly compounding'],
+   ['Time Deposit (TD) — 1 year','6.9% p.a.','1 year','Quarterly compounding; interest paid annually'],
+   ['Time Deposit (TD) — 2 years','7.0% p.a.','2 years','Quarterly compounding; interest paid annually'],
+   ['Time Deposit (TD) — 3 years','7.1% p.a.','3 years','Quarterly compounding; interest paid annually'],
+   ['Time Deposit (TD) — 5 years','7.5% p.a.','5 years','Quarterly compounding; interest paid annually'],
+   ['Monthly Income Scheme (MIS)','7.4% p.a.','5 years','Interest paid monthly'],
+   ['Senior Citizens Savings Scheme (SCSS)','8.2% p.a.','5 years','Interest paid quarterly; eligible senior citizens'],
+   ['Public Provident Fund (PPF)','7.1% p.a.','15 years','Interest calculated annually; tax rules apply'],
+   ['Sukanya Samriddhi Account (SSA/SSY)','8.2% p.a.','Account matures after 21 years','For eligible girl child; deposits generally up to 15 years'],
+   ['National Savings Certificate (NSC)','7.7% p.a.','5 years','Compounded annually; payable at maturity'],
+   ['Kisan Vikas Patra (KVP)','7.5% p.a.','115 months','Investment doubles at the notified maturity period']
+  ];
+  doc.autoTable({startY:38,head:[['SCHEME','CURRENT RATE','TENURE','KEY POINT']],body:posb,theme:'striped',
+    styles:{font:'helvetica',fontSize:7.1,cellPadding:2.6,overflow:'linebreak',valign:'middle',textColor:C.ink,lineColor:C.line,lineWidth:.1},
+    headStyles:{fillColor:C.blue,textColor:C.white,fontStyle:'bold',fontSize:7.1},
+    alternateRowStyles:{fillColor:[247,250,247]},
+    columnStyles:{0:{cellWidth:57,fontStyle:'bold'},1:{cellWidth:29,halign:'center'},2:{cellWidth:37},3:{cellWidth:53}},
+    margin:{left:14,right:14,bottom:15}});
+  let y=doc.lastAutoTable.finalY+5;
+  doc.setFont('helvetica','normal');doc.setFontSize(6.8);setText(C.muted);
+  doc.text(doc.splitTextToSize('Rate source: India Post savings-schemes information and Government small-savings rate notification for Q3 FY 2026–27 (1 Oct–31 Dec 2026). Rates are subject to periodic government revision. Confirm the current rate and scheme rules at the time of account opening.',182),14,y);
+  // PLI / RPLI bonus reference
+  doc.addPage('a4','portrait');header('PLI & RPLI BONUS QUICK GUIDE','Declared simple reversionary bonus rates  •  per ₹1,000 sum assured per year','portrait');
+  doc.setFont('helvetica','normal');doc.setFontSize(7.4);setText(C.muted);
+  doc.text('The rates below are the latest declared rates located for FY 2025–26, effective from 1 April 2025, pending confirmation of any subsequent notification.',14,33);
+  const bonus=[
+   ['Whole Life Assurance (WLA)','₹76','₹60','Bonus per ₹1,000 sum assured per year'],
+   ['Endowment Assurance (EA)','₹52','₹48','Bonus per ₹1,000 sum assured per year'],
+   ['Anticipated Endowment Assurance (AEA)','₹48','₹45','Bonus per ₹1,000 sum assured per year'],
+   ['Convertible Whole Life Assurance (CWLA)','WLA rate; EA rate after conversion','WLA rate; EA rate after conversion','Rate depends on conversion status']
+  ];
+  doc.autoTable({startY:39,head:[['POLICY TYPE','PLI','RPLI','BASIS']],body:bonus,theme:'striped',
+    styles:{font:'helvetica',fontSize:7.5,cellPadding:3.2,overflow:'linebreak',valign:'middle',textColor:C.ink,lineColor:C.line,lineWidth:.1},
+    headStyles:{fillColor:C.green,textColor:C.white,fontStyle:'bold'},
+    alternateRowStyles:{fillColor:[247,250,247]},
+    columnStyles:{0:{cellWidth:57,fontStyle:'bold'},1:{cellWidth:37,halign:'center'},2:{cellWidth:37,halign:'center'},3:{cellWidth:45}},
+    margin:{left:14,right:14,bottom:15}});
+  y=doc.lastAutoTable.finalY+8;
+  setFill(C.mint);doc.roundedRect(14,y,182,35,3,3,'F');
+  doc.setFont('helvetica','bold');doc.setFontSize(8.2);setText(C.dark);doc.text('Terminal bonus (where eligible)',19,y+8);
+  doc.setFont('helvetica','normal');doc.setFontSize(7.3);setText(C.ink);
+  doc.text(doc.splitTextToSize('₹20 per ₹10,000 sum assured, subject to a maximum of ₹1,000, for eligible Whole Life Assurance and Endowment Assurance policies with a term of 20 years or more, as specified in the notification.',171),19,y+14);
+  y+=43;
+  doc.setFont('helvetica','bold');doc.setFontSize(8);setText(C.red);doc.text('IMPORTANT INSURANCE NOTES',14,y);
+  doc.setFont('helvetica','normal');doc.setFontSize(7.2);setText(C.ink);
+  const notes=[
+   'Bonus rates are declared by the insurer and may change following actuarial valuation; they are not a bank-deposit interest rate.',
+   'Bonus accrual, eligibility, surrender value, maturity and death benefits depend on the policy type, policy conditions, premium payment status and applicable rules.',
+   'The table is a quick reference, not a personalized benefit illustration. Confirm the latest official PLI/RPLI bonus notification and policy terms before quoting benefits to a customer.'
+  ];
+  let ny=y+6;notes.forEach(t=>{const lines=doc.splitTextToSize('• '+t,178);doc.text(lines,16,ny);ny+=lines.length*3.6+2;});
+  doc.setFont('helvetica','normal');doc.setFontSize(6.7);setText(C.muted);
+  doc.text('Official information: indiapost.gov.in/banking-services/savings  |  indiapost.gov.in/insurance-services/pli  |  indiapost.gov.in/insurance-services/rpli',14,ny+3,{maxWidth:182});
+  // Apply consistent page footer and download
+  footer();
+  doc.save('sanchayer-sopno-'+d.plan.toLowerCase()+'-report.pdf');
+  $('downloadStatus').textContent='Beautifully formatted PDF downloaded with projection chart, month-wise schedule, FAQs, POSB scheme rates and PLI/RPLI bonus reference.';
 });
 </script>
 </body></html>
