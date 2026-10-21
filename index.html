@@ -298,6 +298,7 @@ $('pdfBtn').addEventListener('click',()=>{
     }
   }
   function sectionLabel(text,x,y){
+    if(typeof doc.setCharSpace==='function') doc.setCharSpace(0);
     setFill(C.mint);doc.roundedRect(x,y-4,2.5,7,1,1,'F');
     doc.setFont('helvetica','bold');doc.setFontSize(10);setText(C.dark);doc.text(text,x+6,y+1);
   }
@@ -404,7 +405,7 @@ $('pdfBtn').addEventListener('click',()=>{
   doc.setFont('helvetica','normal');doc.setFontSize(6.8);setText(C.muted);
   doc.text(doc.splitTextToSize('Rate source: India Post savings-schemes information and Government small-savings rate notification for Q3 FY 2026–27 (1 Oct–31 Dec 2026). Rates are subject to periodic government revision. Confirm the current rate and scheme rules at the time of account opening.',182),14,y);
   // PLI / RPLI bonus reference
-  doc.addPage('a4','portrait');header(''PLI & RPLI BONUS GUIDE','Declared bonus per ₹1,000 sum assured','portrait');
+  doc.addPage('a4','portrait');header('PLI & RPLI BONUS GUIDE','Declared bonus per ₹1,000 sum assured','portrait');
   doc.setFont('helvetica','normal');doc.setFontSize(7.4);setText(C.muted);
   doc.text('The rates below are the latest declared rates located for FY 2025–26, effective from 1 April 2025, pending confirmation of any subsequent notification.',14,33);
   const bonus=[
@@ -413,6 +414,7 @@ $('pdfBtn').addEventListener('click',()=>{
    ['Anticipated Endowment Assurance (AEA)','₹48','₹45','Bonus per ₹1,000 sum assured per year'],
    ['Convertible Whole Life Assurance (CWLA)','WLA rate; EA rate after conversion','WLA rate; EA rate after conversion','Rate depends on conversion status']
   ];
+  if(typeof doc.setCharSpace==='function') doc.setCharSpace(0);
   doc.autoTable({startY:39,head:[['POLICY TYPE','PLI','RPLI','BASIS']],body:bonus,theme:'striped',
     styles:{font:'helvetica',fontSize:7.5,cellPadding:3.2,overflow:'linebreak',valign:'middle',textColor:C.ink,lineColor:C.line,lineWidth:.1},
     headStyles:{fillColor:C.green,textColor:C.white,fontStyle:'bold'},
