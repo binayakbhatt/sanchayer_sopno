@@ -240,7 +240,7 @@ $('protectionYes').addEventListener('click',async()=>{
  try{
   await fetch(GOOGLE_SHEETS_WEB_APP_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload)});
   $('protectionActions').classList.add('hidden');
-  $('protectionStatus').textContent='Thank you. Your interest request has been submitted. Postal staff will contact you to explain suitable PLI/RPLI options. Please note that this browser cannot verify the Google Sheets save; staff should confirm the request appears in the register.';
+  $('protectionStatus').textContent='Thank you. Your interest request has been submitted. Postal staff will contact you to explain suitable PLI/RPLI schemes';
  }catch(err){
   $('protectionStatus').textContent='We could not submit your request. Please ask postal staff to record your interest manually.';
   $('protectionYes').disabled=false;$('protectionYes').textContent="Yes, I'm interested";
