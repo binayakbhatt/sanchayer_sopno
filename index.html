@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Calculate an illustrative Post Office Time Deposit savings projection with a corpus chart, month-wise schedule and PDF report.">
 <meta name="theme-color" content="#12372a">
-<title>Savings Dream | A Smart Saving Scheme</title>
+<title>Xonchoyor Hopun | A Smart Saving Scheme</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js"></script>
@@ -32,7 +32,7 @@ main{padding:28px clamp(16px,3vw,28px) 48px}.section-kicker{text-align:center;te
   <div class="inner hero">
     <div class="hero-copy">
       <p class="eyebrow">A savings movement for Assam</p>
-      <h1>Sanchayer <br>Sopno </h1>
+      <h1>Xonchoyor <br>Hopun </h1>
       <p class="lead">Set aside % of your income. Take a step towards your dreams.</p>
       <p class="sub"> Now give your family's dreams the same attention through a disciplined savings approach using separate one-year Post Office Time Deposits.</p>
       <a class="hero-cta" href="#calculator">Build my Systematic Investment Plan (SIP) <span aria-hidden="true">↗</span></a>
@@ -54,7 +54,7 @@ main{padding:28px clamp(16px,3vw,28px) 48px}.section-kicker{text-align:center;te
   <h2 class="section-title">Three ways to build your savings</h2>
   <p class="section-intro">Choose the approach that best matches your savings habit. The calculator will prepare an illustrative projection for your selected plan.</p>
   <div class="plans">
-    <div class="plan-card"><h3>PLAN A — Start &amp; Reinvest</h3><p>Make fresh contributions during the first year, then stop new contributions and model the reinvestment of eligible maturity proceeds.</p><p class="plan-foot">A focused start, followed by reinvestment.</p></div>
+    <div class="plan-card"><h3>PLAN A — Start & Reinvest</h3><p>Make fresh contributions during the first year, then stop new contributions and model the reinvestment of eligible maturity proceeds.</p><p class="plan-foot">A focused start, followed by reinvestment.</p></div>
     <div class="plan-card"><h3>PLAN B — Save Every Month</h3><p>Continue regular monthly contributions for your chosen horizon and model eligible maturity proceeds being reinvested.</p><p class="plan-foot">Build a disciplined savings routine.</p></div>
     <div class="plan-card"><h3>PLAN C — Step Up Your Savings</h3><p>Start with an affordable monthly amount and increase your contribution annually by the percentage you choose.</p><p class="plan-foot">Let your savings grow with your income.</p></div>
   </div>
@@ -80,16 +80,16 @@ main{padding:28px clamp(16px,3vw,28px) 48px}.section-kicker{text-align:center;te
 <div id="report" class="hidden">
 <section class="panel"><h2>01 · Your plan summary</h2><p id="personalSummary" class="note"></p><div class="results" id="metrics"></div></section>
 <section class="panel"><h2>02 · Your corpus growth</h2><div class="chartbox"><canvas id="growthChart" aria-label="Investment and projected corpus by month"></canvas></div><p class="note">The chart compares cumulative contributions with projected corpus over time.</p></section>
-<section class="panel"><h2>03 · Month-wise contribution and maturity schedule</h2><p class="note">Each contribution is treated as a separate one-year TD. The schedule covers every month in the selected horizon, including months with no new contribution under Plan A. It shows each month’s contribution, cumulative contributions, and the modelled value and estimated interest attributable to that month’s contribution at the horizon.</p><div class="table-wrap"><table><thead><tr><th>Month</th><th>Contribution date*</th><th>Contribution (₹)</th><th>Cumulative invested (₹)</th><th>First maturity month</th><th>Years reinvested</th><th>Projected value (₹)</th><th>Profit (₹)</th></tr></thead><tbody id="schedule"></tbody></table></div><p class="note">*Contribution date is shown as a month label because a start date has not been requested. Maturity and reinvestment are modelled in whole-month/whole-year periods.</p></section>
+<section class="panel"><h2>03 · Month-wise contribution and maturity schedule</h2><p class="note">Each contribution is treated as a separate one-year TD. The schedule covers every month in the selected horizon, including months with no new contribution under Plan A. It shows each month’s initial contribution, cumulative out-of-pocket investments (including top-ups to the next ₹100 multiple on reinvestment), and the modelled value and estimated interest attributable to that month’s contribution at the horizon.</p><div class="table-wrap"><table><thead><tr><th>Month</th><th>Contribution date*</th><th>Contribution (₹)</th><th>Cumulative invested (₹)</th><th>First maturity month</th><th>Years reinvested</th><th>Projected value (₹)</th><th>Profit (₹)</th></tr></thead><tbody id="schedule"></tbody></table></div><p class="note">*Contribution date is shown as a month label because a start date has not been requested. Maturity and reinvestment are modelled in whole-month/whole-year periods.</p></section>
 <section class="panel"><h2>04 · Take your report with you</h2><div class="actions"><button class="action primary" id="pdfBtn">Download PDF report</button></div><p class="note" id="downloadStatus" role="status"></p></section>
-<section class="panel"><h2>Calculation method &amp; assumptions</h2><p class="note">The rate entered is an assumption applied consistently across the modelled TDs and reinvestments. The estimate uses a simplified quarterly-compounding approximation. Each contribution is modelled as a separate one-year TD; the rate on an actual TD is governed by the rate and rules applicable when that deposit is opened. Future reinvestment rates may change. Contributions not yet matured by the selected horizon are shown at principal value. Taxes/TDS, actual product-specific rounding, rate changes and premature closure are not modelled. Profit percentage is cumulative estimated profit divided by total contributions, not an annualized return/XIRR.</p></section>
+<section class="panel"><h2>Calculation method & assumptions</h2><p class="note">The rate entered is an assumption applied consistently across the modelled TDs and reinvestments. The estimate uses a simplified quarterly-compounding approximation. Each contribution is modelled as a separate one-year TD; the rate on an actual TD is governed by the rate and rules applicable when that deposit is opened. At maturity, proceeds are topped up to the next multiple of ₹100 for reinvestment. Future reinvestment rates may change. Contributions not yet matured by the selected horizon are shown at principal value. Taxes/TDS, actual product-specific rounding, rate changes and premature closure are not modelled. Profit percentage is cumulative estimated profit divided by total contributions, not an annualized return/XIRR.</p></section>
 </div>
 <section class="panel faq-panel" id="faq">
   <p class="section-kicker">Questions, answered</p>
   <h2 class="section-title">Frequently asked questions</h2>
   <p class="section-intro">Understand the savings approach, interest assumptions and important Time Deposit conditions.</p>
   <div class="faq-list">
-    <details class="faq-item"><summary>What is Sanchoyer Sopno?</summary><p>It is an illustrative savings-planning tool that models optional monthly contributions into separate one-year Post Office Time Deposits and shows an estimated future corpus. It is a planning approach, not a separate government savings scheme or recurring deposit account.</p></details>
+    <details class="faq-item"><summary>What is Xonchoyor Hopun?</summary><p>It is an illustrative savings-planning tool that models optional monthly contributions into separate one-year Post Office Time Deposits and shows an estimated future corpus. It is a planning approach, not a separate government savings scheme or recurring deposit account.</p></details>
     <details class="faq-item"><summary>Can I stop contributing and resume any time?</summary><p>Yes. This is a flexible planning approach, not a contractual monthly contribution plan. You can stop making new deposits and resume later according to your circumstances. Each Time Deposit you have already opened remains a separate account and continues under its own terms until maturity or permitted closure. Stopping future contributions does not itself close existing deposits.</p></details>
     <details class="faq-item"><summary>Are returns guaranteed? Is this market-linked like a mutual fund SIP?</summary><p>Post Office TD interest is not linked to stock-market performance. For each actual TD, the applicable government-notified rate at the time of opening applies according to the scheme rules for that deposit's tenure. However, this calculator's final corpus is only an illustration: future TD rates on reinvestment may change, and actual maturity values depend on booking dates, scheme rules, rounding and tax treatment. Mutual fund SIP returns are market-linked and are not guaranteed.</p></details>
     <details class="faq-item"><summary>What happens if I close a Time Deposit prematurely?</summary><p>Post Office TD premature closure is subject to scheme rules and is generally not permitted before six months. If closed after six months but before one year, interest is payable at the applicable Post Office Savings Account rate for completed months. Premature closure of longer-tenure TDs after one year is subject to reduced-interest rules and adjustment of interest already paid. Conditions differ by tenure; confirm the current rules and amount payable with the post office before closing.</p></details>
@@ -123,7 +123,7 @@ main{padding:28px clamp(16px,3vw,28px) 48px}.section-kicker{text-align:center;te
   </div>
 </div>
 
-<div class="bottom-banner">START YOUR SANCHAYER SOPNO JOURNEY TODAY!<span>Save thoughtfully. Review your plan. Reinvest where suitable.</span></div>
+<div class="bottom-banner">START YOUR XONCHOYOR HOPUN JOURNEY TODAY!<span>Save thoughtfully. Review your plan. Reinvest where suitable.</span></div>
 </main><div class="footer"><strong>India Post — From Savings to Dreams.</strong><br>Educational illustration only — not investment, tax or banking advice. Rates and maturity values depend on applicable product rules and dates.</div>
 <script>
 const $=id=>document.getElementById(id);
@@ -152,11 +152,20 @@ function calculate(){
   if(plan==='A'&&m<=12)contribution=monthly;
   if(plan==='B')contribution=monthly;
   if(plan==='C')contribution=monthly*Math.pow(1+increment/100,Math.floor((m-1)/12));
-  invested+=contribution;
+  
   const maturity=m+12,yearsReinvested=maturity<=end?Math.floor((end-maturity)/12)+1:0;
-  const value=maturity<=end?contribution*Math.pow(factor,yearsReinvested):contribution;
-  const profit=value-contribution;corpus+=value;
-  rows.push({month:m,label:`Year ${Math.floor((m-1)/12)+1}, Month ${(m-1)%12+1}`,contribution,cumulative:invested,maturityMonth:maturity,yearsReinvested,value,profit});
+  let currentPrincipal=contribution,extraAdded=0;
+  for(let y=0;y<yearsReinvested;y++){
+   let matured=currentPrincipal*factor;
+   let nextPrincipal=Math.ceil(matured/100)*100;
+   extraAdded+=(nextPrincipal-matured);
+   currentPrincipal=nextPrincipal;
+  }
+  
+  const value=currentPrincipal,totalTrancheInvested=contribution+extraAdded,profit=value-totalTrancheInvested;
+  invested+=totalTrancheInvested;corpus+=value;
+  
+  rows.push({month:m,label:`Year ${Math.floor((m-1)/12)+1}, Month ${(m-1)%12+1}`,initialContribution:contribution,contribution:contribution,cumulative:invested,maturityMonth:maturity,yearsReinvested,value,profit});
  }
  reportData={identity,monthly,rate,years,plan,increment:plan==='C'?increment:null,rows,invested,corpus,profit:corpus-invested,pct:invested?(corpus-invested)/invested*100:0};
  renderReport();
@@ -168,7 +177,7 @@ function renderReport(){
  $('personalSummary').textContent=`Prepared for ${d.identity.name} · Profession: ${d.identity.profession||'Not specified'} · Phone: ${d.identity.phone} · PIN: ${d.identity.pin} · ${planNames[d.plan]} · ${d.years}-year horizon · Assumed interest rate: ${d.rate}% p.a.`+(d.plan==='C'?` · Annual contribution increase: ${d.increment}%`:'');
  const metrics=[['Total contributions',fmt(d.invested)],['Projected corpus',fmt(d.corpus)],['Investment profit',fmt(d.profit)],['Profit percentage',d.pct.toFixed(2)+'%']];
  $('metrics').innerHTML=metrics.map(x=>`<div class="metric"><div class="k">${x[0]}</div><div class="v">${x[1]}</div></div>`).join('');
- $('schedule').innerHTML=d.rows.map(r=>`<tr><td>${r.month}</td><td>${r.label}</td><td>${fmt(r.contribution)}</td><td>${fmt(r.cumulative)}</td><td>${r.maturityMonth<=d.years*12?r.maturityMonth:'After horizon'}</td><td>${r.yearsReinvested}</td><td>${fmt(r.value)}</td><td>${fmt(r.profit)}</td></tr>`).join('');
+ $('schedule').innerHTML=d.rows.map(r=>`<tr><td>${r.month}</td><td>${r.label}</td><td>${fmt(r.initialContribution)}</td><td>${fmt(r.cumulative)}</td><td>${r.maturityMonth<=d.years*12?r.maturityMonth:'After horizon'}</td><td>${r.yearsReinvested}</td><td>${fmt(r.value)}</td><td>${fmt(r.profit)}</td></tr>`).join('');
  const labels=d.rows.map(r=>r.label),invested=d.rows.map(r=>r.cumulative),values=d.rows.map(r=>projectionAtMonth(d,r.month).corpus);
  if(chart)chart.destroy();
  chart=new Chart($('growthChart'),{type:'line',data:{labels,datasets:[{label:'Cumulative contributions',data:invested,borderColor:'#7b8b83',backgroundColor:'#7b8b83',tension:.18,pointRadius:0},{label:'Projected cumulative corpus',data:values,borderColor:'#176344',backgroundColor:'#dff3e8',tension:.18,pointRadius:0,fill:true}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom'}},scales:{x:{ticks:{maxTicksLimit:8}},y:{beginAtZero:true,ticks:{callback:v=>'₹'+Number(v).toLocaleString('en-IN')}}}}});
@@ -189,7 +198,7 @@ async function saveToGoogleSheets(){
    annualIncrement:d.plan==='C'?d.increment:'',
    totalInvested:Number(d.invested.toFixed(2)),projectedCorpus:Number(d.corpus.toFixed(2)),
    profit:Number(d.profit.toFixed(2)),profitPercent:Number(d.pct.toFixed(2)),
-   rows:d.rows.map(r=>({monthNumber:r.month,monthLabel:r.label,contribution:Number(r.contribution.toFixed(2)),
+   rows:d.rows.map(r=>({monthNumber:r.month,monthLabel:r.label,contribution:Number(r.initialContribution.toFixed(2)),
     cumulativeInvested:Number(r.cumulative.toFixed(2)),firstMaturityMonth:r.maturityMonth,
     reinvestmentYears:r.yearsReinvested,projectedValue:Number(r.value.toFixed(2)),profit:Number(r.profit.toFixed(2))}))
   }
@@ -247,8 +256,16 @@ $('protectionYes').addEventListener('click',async()=>{
 $('calculateBtn').addEventListener('click',()=>{const valid=calculate();if(valid&&reportData){protectionPromptShownForCalculation=false;saveToGoogleSheets();observeProjectionTable();}});
 function projectionAtMonth(d,targetMonth){
  const factor=Math.pow(1+d.rate/400,4);let corpus=0,invested=0;
- for(const r of d.rows){if(r.month>targetMonth)continue;invested+=r.contribution;
-  const maturity=r.month+12;const value=maturity<=targetMonth?r.contribution*Math.pow(factor,Math.floor((targetMonth-maturity)/12)+1):r.contribution;corpus+=value;
+ for(const r of d.rows){if(r.month>targetMonth)continue;
+  let currentPrincipal=r.initialContribution,added=0;
+  const maturity=r.month+12,yearsReinvested=maturity<=targetMonth?Math.floor((targetMonth-maturity)/12)+1:0;
+  for(let y=0;y<yearsReinvested;y++){
+   let matured=currentPrincipal*factor;
+   let nextPrincipal=Math.ceil(matured/100)*100;
+   added+=(nextPrincipal-matured);
+   currentPrincipal=nextPrincipal;
+  }
+  invested+=(r.initialContribution+added);corpus+=currentPrincipal;
  }
  return {invested,corpus};
 }
@@ -280,7 +297,7 @@ $('pdfBtn').addEventListener('click',()=>{
     const w=orientation==='portrait'?210:297;
     setFill(C.dark);doc.rect(0,0,w,27,'F');
     setFill(C.red);doc.rect(0,25,w,2,'F');
-    doc.setFont('helvetica','bold');doc.setFontSize(17);setText(C.white);doc.text('SANCHAYER SOPNO',margin,12);
+    doc.setFont('helvetica','bold');doc.setFontSize(17);setText(C.white);doc.text('XONCHOYOR HOPUN',margin,12);
     doc.setFont('helvetica','normal');doc.setFontSize(8);setText([218,235,224]);doc.text('INDIA POST  |  DREAMS THROUGH SAVINGS',margin,19);
     doc.setFont('helvetica','bold');doc.setFontSize(13);setText(C.white);doc.text(title,w-margin,12,{align:'right'});
     doc.setFont('helvetica','normal');doc.setFontSize(7.5);setText([218,235,224]);doc.text(subtitle,w-margin,19,{align:'right'});
@@ -291,7 +308,7 @@ $('pdfBtn').addEventListener('click',()=>{
       doc.setPage(i);const w=doc.internal.pageSize.getWidth(),h=doc.internal.pageSize.getHeight();
       setDraw(C.line);doc.setLineWidth(.25);doc.line(14,h-10,w-14,h-10);
       doc.setFont('helvetica','normal');doc.setFontSize(7);setText(C.muted);
-      doc.text('Sanchayer Sopno  •  Illustrative planning report  •  Verify current scheme rules before investing',14,h-5);
+      doc.text('Xonchoyor Hopun  •  Illustrative planning report  •  Verify current scheme rules before investing',14,h-5);
       doc.text(`Page ${i} of ${n}`,w-14,h-5,{align:'right'});
     }
   }
@@ -339,7 +356,7 @@ $('pdfBtn').addEventListener('click',()=>{
   doc.text(`Customer: ${d.identity.name}  |  Plan: ${planNames[d.plan]}  |  Assumed rate: ${d.rate}% p.a.`,14,34);
   doc.autoTable({
     startY:39,head:[['Month','Contribution period','Contribution','Cumulative invested','First maturity month','Reinvestment years','Projected value','Estimated profit']],
-    body:d.rows.map(r=>[r.month,r.label,money(r.contribution),money(r.cumulative),r.maturityMonth<=d.years*12?r.maturityMonth:'Beyond horizon',r.yearsReinvested,money(r.value),money(r.profit)]),
+    body:d.rows.map(r=>[r.month,r.label,money(r.initialContribution),money(r.cumulative),r.maturityMonth<=d.years*12?r.maturityMonth:'Beyond horizon',r.yearsReinvested,money(r.value),money(r.profit)]),
     theme:'striped',styles:{font:'helvetica',fontSize:7,cellPadding:2.2,overflow:'linebreak',textColor:C.ink,lineColor:C.line,lineWidth:.1},
     headStyles:{fillColor:C.green,textColor:C.white,fontStyle:'bold',fontSize:7},
     alternateRowStyles:{fillColor:[247,250,247]},margin:{left:10,right:10,bottom:14},
@@ -351,13 +368,13 @@ $('pdfBtn').addEventListener('click',()=>{
   if(last<190){
     doc.setFont('helvetica','bold');doc.setFontSize(7.5);setText(C.dark);doc.text('Method & assumptions',10,last+7);
     doc.setFont('helvetica','normal');doc.setFontSize(7);setText(C.muted);
-    const notes='Each contribution is modelled as a separate one-year TD. A simplified quarterly-compounding approximation and complete-year reinvestment periods are used. Contributions not yet matured by the selected horizon are shown at principal value. Taxes/TDS, actual product-specific rounding, premature closure and future rate changes are not modelled.';
+    const notes='Each contribution is modelled as a separate one-year TD. A simplified quarterly-compounding approximation and complete-year reinvestment periods are used. At maturity, proceeds are topped up to the next multiple of ₹100 for reinvestment. Contributions not yet matured by the selected horizon are shown at principal value. Taxes/TDS, actual product-specific rounding, premature closure and future rate changes are not modelled.';
     doc.text(doc.splitTextToSize(notes,275),10,last+12);
   }
   // FAQ page(s), formatted as a clear Q&A table
   doc.addPage('a4','portrait');header('FREQUENTLY ASKED QUESTIONS','Understand the illustration and the underlying products','portrait');
   const pdfFaq=[
-   ['What is Sanchayer Sopno?','An illustrative savings-planning tool that models optional monthly contributions into separate one-year Post Office Time Deposits. It is not a separate government scheme or recurring deposit account.'],
+   ['What is Xonchoyor Hopun?','An illustrative savings-planning tool that models optional monthly contributions into separate one-year Post Office Time Deposits. It is not a separate government scheme or recurring deposit account.'],
    ['Can I stop contributing and resume later?','Yes. This is a flexible planning approach, not a contractual monthly contribution plan. Existing TDs remain separate accounts under their own terms; stopping new contributions does not close them.'],
    ['Are returns guaranteed or market-linked?','Post Office TDs are not linked to stock-market performance. The applicable rate and rules for each actual TD depend on its booking date and tenure. The projected final corpus is not guaranteed; future reinvestment rates may change. Mutual fund SIP returns are market-linked and not guaranteed.'],
    ['Why can I edit the interest rate?','The rate is a scenario input, not a live rate feed. Confirm the currently notified TD rate before opening each deposit. This simplified model applies one assumed rate across the illustration.'],
@@ -437,7 +454,7 @@ $('pdfBtn').addEventListener('click',()=>{
   doc.text('Official information: indiapost.gov.in/banking-services/savings  |  indiapost.gov.in/insurance-services/pli  |  indiapost.gov.in/insurance-services/rpli',14,ny+3,{maxWidth:182});
   // Apply consistent page footer and download
   footer();
-  doc.save('sanchayer-sopno-'+d.plan.toLowerCase()+'-report.pdf');
+  doc.save('xonchoyor-hopun-'+d.plan.toLowerCase()+'-report.pdf');
   $('downloadStatus').textContent='Beautifully formatted PDF downloaded with projection chart, month-wise schedule, FAQs, POSB scheme rates and PLI/RPLI bonus reference.';
 });
 </script>
